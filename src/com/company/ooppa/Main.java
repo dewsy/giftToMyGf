@@ -61,21 +61,26 @@ public class Main {
         String message = "";
         if (Props.getInstance().getDate().equals(currentdate)) {
             message = "It's already checked today!";
-            return message;
+           // return message;
         } else {
             message = Messages.getRandom();
         }
         switch (currentdate.substring(5)) {
             case "08/18":
                 message = "Happy anniversary!";
+                return message;
             case "05/01":
                 message = "Happy birthday kincsem!";
+                return message;
             case "01/19":
                 message = "Happy namesday!";
+                return message;
             case "03/08":
                 message = "Happy international women's day!";
+                return message;
             case "02/14":
                 message = "Happy Valentine's day!";
+                return message;
         }
         return message;
     }
