@@ -61,7 +61,7 @@ public class Main {
         String message = "";
         if (Props.getInstance().getDate().equals(currentdate)) {
             message = "It's already checked today!";
-           // return message;
+            return message;
         } else {
             message = Messages.getRandom();
         }
