@@ -20,9 +20,6 @@ public class Main {
         Desktop desktop = java.awt.Desktop.getDesktop();
         currentdate = checkDate();
         createFileFromTemplate(getTemplateAsString());
-        if (Props.getInstance().getDate().equals(currentdate)) {
-            System.out.println("Today already checked!");
-        }
         Props.getInstance().saveDateChange(checkDate());
         try {
             desktop.open(new File("index.html"));
@@ -49,7 +46,8 @@ public class Main {
     }
 
     private static void createFileFromTemplate(String template) {
-        template = template.replace("$bodyContent", "Szeretlek");
+        String message = generateMessage();
+        template = template.replace("$bodyContent", message);
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("index.html"));
             writer.write(template);
@@ -57,5 +55,28 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static String generateMessage() {
+        String message = "";
+        if (Props.getInstance().getDate().equals(currentdate)) {
+            message = "It's already checked today!";
+            return message;
+        } else {
+            message = Messages.getRandom();
+        }
+        switch (currentdate.substring(5)) {
+            case "08/18":
+                message = "Happy anniversary!";
+            case "05/01":
+                message = "Happy birthday kincsem!";
+            case "01/19":
+                message = "Happy namesday!";
+            case "03/08":
+                message = "Happy international women's day!";
+            case "02/14":
+                message = "Happy Valentine's day!";
+        }
+        return message;
     }
 }
