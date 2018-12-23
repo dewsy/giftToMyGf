@@ -28,7 +28,7 @@ public class Props {
 
         try {
 
-            input = new FileInputStream("config.properties");
+            input = new FileInputStream("resources/config.properties");
 
             // load a properties file
             prop.load(input);
@@ -57,7 +57,7 @@ public class Props {
         try {
             Properties props = new Properties();
             props.setProperty("lastVisited", date);
-            File f = new File("config.properties");
+            File f = new File("resources/config.properties");
             OutputStream out = new FileOutputStream( f );
             props.store(out, "This is an optional header comment string");
         }
