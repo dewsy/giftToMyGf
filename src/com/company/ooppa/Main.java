@@ -14,11 +14,11 @@ import java.util.Date;
 
 public class Main {
 
-    private static String currentdate;
+    private static String currentDate;
 
     public static void main(String[] args) {
         Desktop desktop = java.awt.Desktop.getDesktop();
-        currentdate = checkDate();
+        currentDate = checkDate();
         createFileFromTemplate(getTemplateAsString());
         Props.getInstance().saveDateChange(checkDate());
         try {
@@ -59,12 +59,12 @@ public class Main {
 
     private static String generateMessage() {
         String message;
-        if (Props.getInstance().getDate().equals(currentdate)) {
+        if (Props.getInstance().getDate().equals(currentDate)) {
             return "Ma már jártál erre, nem csalunk! De azért puszi!";
         } else {
             message = Messages.getRandom();
         }
-        switch (currentdate.substring(5)) {
+        switch (currentDate.substring(5)) {
             case "08/18":
                 return "Áldott évfordulót nekünk!";
             case "05/01":
