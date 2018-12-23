@@ -58,29 +58,27 @@ public class Main {
     }
 
     private static String generateMessage() {
-        String message = "";
+        String message;
         if (Props.getInstance().getDate().equals(currentdate)) {
-            message = "It's already checked today!";
-            return message;
+            return "Ma már jártál erre, nem csalunk! De azért puszi!";
         } else {
             message = Messages.getRandom();
         }
         switch (currentdate.substring(5)) {
             case "08/18":
-                message = "Happy anniversary!";
-                return message;
+                return "Áldott évfordulót nekünk!";
             case "05/01":
-                message = "Happy birthday kincsem!";
-                return message;
+                return "Isten éltessen szülinapod alkalmából!";
             case "01/19":
-                message = "Happy namesday!";
-                return message;
+                return "Boldog névnapot!";
             case "03/08":
-                message = "Happy international women's day!";
-                return message;
+                return "Boldog nőnapot!";
             case "02/14":
-                message = "Happy Valentine's day!";
-                return message;
+                return "Boldog Valentin napot!";
+            case "12/25":
+                return "Áldott karácsonyt!";
+            case "01/01":
+                return "B.U.É.K!";
         }
         return message;
     }
