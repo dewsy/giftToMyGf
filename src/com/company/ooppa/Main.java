@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
@@ -22,7 +21,7 @@ public class Main {
         createFileFromTemplate(getTemplateAsString());
         Props.getInstance().saveDateChange(checkDate());
         try {
-            desktop.open(new File("index.html"));
+            desktop.open(new File("resources/index.html"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,21 +34,22 @@ public class Main {
     }
 
     private static String getTemplateAsString() {
-        URL url = Main.class.getResource("template.html");
-        String htmlString = "";
+        String templateString = "";
         try {
-            htmlString = new String (Files.readAllBytes(Paths.get(url.getPath())) );
-    } catch (Exception e) {
-        e.printStackTrace();
+            File template = new File("resources/template.html");
+            byte[] encoded = Files.readAllBytes(Paths.get(template.toURI()));
+            templateString = new String(encoded);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return htmlString;
+        return templateString;
     }
 
     private static void createFileFromTemplate(String template) {
         String message = generateMessage();
         template = template.replace("$bodyContent", message);
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("index.html"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("resources/index.html"));
             writer.write(template);
             writer.close();
         } catch (Exception e) {
